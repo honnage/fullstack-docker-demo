@@ -1,0 +1,9 @@
+echo. >  .gitignore
+echo. >  compose.yaml 
+
+Xelartech
+npm init
+
+npm i --save-dev @types/node
+npm i --save-dev @types/express
+
