@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mongoUri from './config/connectDB';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
-
+import userRoutes from './routes/user';
 
 dotenv.config(); 
 const app = express();
@@ -23,6 +23,9 @@ if (mongoConnectUri) {
 }
 
 
+app.use(morgan("DEV"));
+app.use(express.json());
+
 
 app.use("/server-health", (req, res) => {
   res.status(200).json({
@@ -31,8 +34,7 @@ app.use("/server-health", (req, res) => {
   })
 })
 
-app.use(morgan("DEV"));
-app.use(express.json());
+app.use("/api/v1/users", userRoutes)
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}!`);
